@@ -44,11 +44,13 @@
                     <button id="resume" class="btn btn-info mb-3 hidden w-100" onclick="resumeCountdown()">再開</button>
                 </div>
                 <div class="col-6">
-                    <button id="reset" class="btn btn-info mb-3 hidden w-100" onclick="resetCountdown()">リセット</i></button>
+                    <button id="reset" class="btn btn-info mb-3 hidden w-100"
+                        onclick="resetCountdown()">リセット</i></button>
                 </div>
             </div>
             <button id="setTime" class="btn btn-secondary mb-3 hidden w-100" onclick="setTimeMode()">設定</button>
-            <button id="alertStop" class="btn btn-danger mt-5 hidden w-100 btn-lg rounded-pill" onclick="stopAlert()">アラート停止</button>
+            <button id="alertStop" class="btn btn-danger mt-5 hidden w-100 btn-lg rounded-pill"
+                onclick="stopAlert()">アラート停止</button>
         </div>
     </div>
 
@@ -80,18 +82,20 @@
             let timeLeft = (minutes * 60) + parseInt(seconds);
             setMode("progress");
             countdownInterval = setInterval(() => {
-                if(!isPaused) {
+                if (!isPaused) {
                     timeLeft--;
-                    if(timeLeft < 0) {
+                    if (timeLeft < 0) {
                         clearInterval(countdownInterval);
                         startAlert();
-                    } else {
+                    }
+                    else {
                         let m = Math.floor(timeLeft / 60);
                         let s = timeLeft % 60;
                         document.getElementById('timer').innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
                     }
                 }
             }, 1000);
+            isPaused = false;
         }
 
         // カウントダウンを一時停止する関数
@@ -110,7 +114,6 @@
         function resetCountdown() {
             clearInterval(countdownInterval);
             updateTimer();
-            isPaused = false;
             setMode("restart");
         }
 
@@ -157,4 +160,5 @@
         setMode("setting");
     </script>
 </body>
+
 </html>
